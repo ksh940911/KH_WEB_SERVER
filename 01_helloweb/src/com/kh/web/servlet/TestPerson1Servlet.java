@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * Servlet 생명주기
  * - was구동내내 딱 하나의 객체만 만들어져서 처리된다. (singletone방식)
- * 1. Servlet객체생성(기본 생성자 호출) 	- 최초 client호출시 1회
+ * 1. Servlet객체생성(기본 생성자 호출) 		- 최초 client호출시 1회
  * 2. init메소드 호출  					- 최초 client호출시 1회
  * 3. HttpServlet의 service메소드 호출 	- client매요청마다
  * 4. 전송방식에 따라 doGet | doPost 호출 	- client매요청마다
@@ -47,7 +47,7 @@ public class TestPerson1Servlet extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws IOException, ServletException {
-		//매 요청시 사용되는 servlet객체는 동일하다.
+		//매 요청시 사용되는 servlet객체는 동일하다. singletone 패턴
 		System.out.println(this.hashCode());
 		
 		// 1. 사용자 입력값 가져오기
@@ -62,8 +62,8 @@ public class TestPerson1Servlet extends HttpServlet{
 		System.out.println("name = " + name);
 		System.out.println("color = " + color);
 		System.out.println("animal = " + animal);
-		System.out.println("foodarr = " + Arrays.toString(foodArr));
-		
+		System.out.println("foodarr = " + Arrays.toString(foodArr)); // import java.util.Arrays;
+		 
 		//2. 응답메세지 작성 : html
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
