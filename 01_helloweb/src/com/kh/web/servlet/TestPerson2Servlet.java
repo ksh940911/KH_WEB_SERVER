@@ -47,7 +47,6 @@ public class TestPerson2Servlet extends HttpServlet {
 			 = request.getRequestDispatcher("/servlet/testPersonEnd.jsp");
 		reqDispatcher.forward(request, response);
 		
-		
 		//3. 응답메세지처리 html
 //		response.setContentType("text/html; charset=utf-8");
 //		PrintWriter out = response.getWriter();

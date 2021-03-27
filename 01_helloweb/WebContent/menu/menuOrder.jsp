@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String main_menu = request.getParameter("main_menu");
-	String side_menu = request.getParameter(	"side_menu");
+	String side_menu = request.getParameter("side_menu");
 	String drink_menu = request.getParameter("drink_menu");
 	int price = (int)request.getAttribute("price");
 %>

@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MenuOrderServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(
-			HttpServletRequest request, 
-			HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		//1. 사용자 입력값 처리
 		String main_menu = request.getParameter("main_menu");
@@ -35,7 +33,7 @@ public class MenuOrderServlet extends HttpServlet {
 		}
 		switch(drink_menu) {
 		case "콜라": 
-		case "사이다": price += 1000; break; // switch fall-through
+		case "사이다": price += 1000; break; // switch fall-through 성질 이용
 		case "커피": price += 1500; break;
 		case "밀크쉐이크": price += 2500; break;
 		}
@@ -47,8 +45,5 @@ public class MenuOrderServlet extends HttpServlet {
 		RequestDispatcher reqDispatcher 
 			= request.getRequestDispatcher("/menu/menuOrder.jsp");
 		reqDispatcher.forward(request, response);
-	
 	}
-
-	
 }

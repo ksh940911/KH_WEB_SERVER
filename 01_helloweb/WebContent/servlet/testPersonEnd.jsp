@@ -1,7 +1,7 @@
 <%-- 
 	jsp주석  
 	jsp : java + html
-	jsp의 모든 자바코드 <%..%>는 모두 서버단에서 처리되고, 그 결과만 html에 반영된다.
+	jsp의 모든 자바코드 <%...blahblah...%>는 모두 서버단에서 처리되고, 그 결과만 html에 반영된다.
 	
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -26,8 +26,8 @@
 	//저장된 속성 가져오기
 	String recommendation = (String)request.getAttribute("recommendation");
 	System.out.println("recommendation@jsp = " + recommendation);
-
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,4 +56,3 @@
 	<p class='recommendation'>오늘은 <%= recommendation %> 어떠세요?</p>
 </body>
 </html>
-
