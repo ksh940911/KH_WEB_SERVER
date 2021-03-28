@@ -1,4 +1,4 @@
-<%-- page 지시어 directive --%>
+<%-- page(지시어 directive : 문서설정에 관한것) --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, java.io.*"%>
 <!DOCTYPE html>
@@ -16,9 +16,9 @@ window.onload = function(){
 </script>
 </head>
 <body>
-	<h1>Basic</h1>!
-	<%-- jsp 주석은 java파일 변환시 제거된다.--%>
-	<!-- html 주석은 client까지 전달된다.-->
+	<h1>Basic</h1>
+	<%-- jsp 주석은 java파일 변환시 제거된다. --%>
+	<!-- html 주석은 client까지 전달된다. -->
 	<%
 		//jsp 스크립팅 요소 : scriptlet
 		int sum = 0;
@@ -27,9 +27,8 @@ window.onload = function(){
 		
 		//현재시각
 		Date now = new Date();
-		
 	%>
-	<p>server-side : java로 계산된 결과 : <%= sum %></p><%-- jsp스크립팅 요소 : 출력식 --%>
+	<p>server-side : java로 계산된 결과 : <%= sum %></p><%-- jsp 스크립팅 요소 : 출력식 --%>
 	<p>server-side : java로 계산된 결과 : <% out.print(sum); %></p>
 	
 	<p>client-side : javascript로 계산된 결과 : <span id="sum"></span></p>
