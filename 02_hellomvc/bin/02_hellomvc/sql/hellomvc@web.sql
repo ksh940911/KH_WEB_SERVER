@@ -27,10 +27,10 @@ create table member (
     email varchar2(100),
     phone char(11) not null,
     address varchar2(200),
-    hobby varchar2(200),                                                  -- 운동,등산,독서,게임,여행
+    hobby varchar2(200),                                                               --운동,등산,독서,게임,여행
     enroll_date date default sysdate,
     constraint pk_member_id primary key(member_id),
-    constraint ck_gender check(gender in ('M', 'F')),                -- M 남자, F 여자
+    constraint ck_gender check(gender in ('M', 'F')),                   -- M 남자, F 여자
     constraint ck_member_role check(member_role in ('U', 'A')) -- U 일반사용자, A 관리자
 );
 
