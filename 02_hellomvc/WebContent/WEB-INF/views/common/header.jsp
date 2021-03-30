@@ -1,4 +1,4 @@
-<%@page import="member.model.vo.Member"%>
+<%@ page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -21,8 +21,8 @@
 				saveId = value;
 		}
 	}
-	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,6 @@
 <% if(loc != null) { %>
 	location.href = "<%= loc %>";
 <% } %>
-
 
 $(function(){
 	/**
@@ -59,8 +58,8 @@ $(function(){
 			return false;
 		}
 	});
-	
 });
+
 </script>
 </head>
 <body>
@@ -107,9 +106,6 @@ $(function(){
 						</td>
 					</tr>
 				</table>
-				
-				
-				
 			<% } %>		
 			</div>
 			<!-- 메인메뉴 시작 -->
@@ -121,9 +117,6 @@ $(function(){
 				</ul>
 			</nav>
 			<!-- 메인메뉴 끝-->
-					
-			
-			
 		</header>
-		
 		<section id="content">
+		

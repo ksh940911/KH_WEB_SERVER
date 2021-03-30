@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSessionBindingListener;
 
 /**
  * 
- * VO클래스
+ * VO(Value Object)클래스
  * 
  * DB테이블의 한행의 정보를 가지고 있는 객체
  */
