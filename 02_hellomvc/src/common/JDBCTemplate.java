@@ -41,6 +41,7 @@ public class JDBCTemplate {
 			e1.printStackTrace();
 		}
 		
+		
 		try {
 			//1. DriverClass등록(최초1회)
 			Class.forName(driverClass);

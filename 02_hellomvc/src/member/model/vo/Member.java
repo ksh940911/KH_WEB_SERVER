@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSessionBindingListener;
 
 /**
  * 
- * VO(Value Object)클래스
+ * VO클래스
  * 
  * DB테이블의 한행의 정보를 가지고 있는 객체
  */
@@ -133,4 +133,5 @@ public class Member implements HttpSessionBindingListener {
 	public void valueUnbound(HttpSessionBindingEvent ev) {
 		System.out.println(memberName + "[" + memberId + "]님이 로그아웃 했습니다.");
 	}
+	
 }

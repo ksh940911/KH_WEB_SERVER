@@ -1,10 +1,10 @@
-<%@ page import="member.model.vo.Member"%>
+<%@page import="member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
 	String msg = (String)session.getAttribute("msg");
-	if(msg != null) session.removeAttribute("msg"); // 일회용 메세지 만들기
+	if(msg != null) session.removeAttribute("msg");
 	
 	String loc = (String)request.getAttribute("loc");
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -16,13 +16,13 @@
 		for(Cookie c : cookies){
 			String name = c.getName();
 			String value = c.getValue();
-			//System.out.println(name + " : " + value);
+			System.out.println(name + " : " + value);
 			if("saveId".equals(name))
 				saveId = value;
 		}
 	}
+	
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +38,7 @@
 <% if(loc != null) { %>
 	location.href = "<%= loc %>";
 <% } %>
+
 
 $(function(){
 	/**
@@ -58,8 +59,8 @@ $(function(){
 			return false;
 		}
 	});
+	
 });
-
 </script>
 </head>
 <body>
@@ -100,12 +101,16 @@ $(function(){
 					</tr>
 					<tr>
 						<td> 
-							<input type="button" value="내정보보기" />
+							<input type="button" value="내정보보기" 
+								onclick="location.href='<%= request.getContextPath() %>/member/memberView';" />
 							<input type="button" value="로그아웃" 
 								onclick="location.href='<%= request.getContextPath() %>/member/logout';" />
 						</td>
 					</tr>
 				</table>
+				
+				
+				
 			<% } %>		
 			</div>
 			<!-- 메인메뉴 시작 -->
@@ -117,6 +122,9 @@ $(function(){
 				</ul>
 			</nav>
 			<!-- 메인메뉴 끝-->
+					
+			
+			
 		</header>
-		<section id="content">
 		
+		<section id="content">

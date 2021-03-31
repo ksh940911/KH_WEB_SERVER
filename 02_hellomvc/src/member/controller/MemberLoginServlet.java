@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import common.MvcUtils;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -37,7 +38,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		//2. 사용자입력값처리
 		String memberId = request.getParameter("memberId");
-		String password = request.getParameter("password");
+		String password = MvcUtils.getSha512(request.getParameter("password"));
 		String saveId = request.getParameter("saveId");
 		System.out.println("memberId@servlet = " + memberId);
 		System.out.println("password@servlet = " + password);
@@ -73,7 +74,7 @@ public class MemberLoginServlet extends HttpServlet {
 			c.setPath(request.getContextPath()); //path 쿠키를 전송할 url
 			if(saveId != null) {
 				//saveId 체크시
-				c.setMaxAge(60 * 60 * 24 * 7); //7일(초 * 분 * 시간 = 일)짜리 영속쿠키로 지정 
+				c.setMaxAge(60 * 60 * 24 * 7); //7일짜리 영속쿠키로 지정 
 			}
 			else {
 				//saveId 체크해제시
@@ -85,8 +86,11 @@ public class MemberLoginServlet extends HttpServlet {
 		else {
 			//로그인 실패
 			session.setAttribute("msg", "로그인에 실패했습니다.");
+
 		}
+		
 		//리다이렉트 : url변경
 		response.sendRedirect(request.getContextPath());
 	}
+
 }
