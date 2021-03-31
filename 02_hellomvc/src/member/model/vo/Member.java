@@ -133,5 +133,4 @@ public class Member implements HttpSessionBindingListener {
 	public void valueUnbound(HttpSessionBindingEvent ev) {
 		System.out.println(memberName + "[" + memberId + "]님이 로그아웃 했습니다.");
 	}
-	
 }

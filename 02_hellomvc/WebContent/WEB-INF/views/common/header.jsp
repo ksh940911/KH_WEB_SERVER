@@ -4,7 +4,7 @@
 
 <%
 	String msg = (String)session.getAttribute("msg");
-	if(msg != null) session.removeAttribute("msg");
+	if(msg != null) session.removeAttribute("msg"); // 일회용 메세지 만들기
 	
 	String loc = (String)request.getAttribute("loc");
 	Member loginMember = (Member)session.getAttribute("loginMember");
