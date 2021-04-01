@@ -26,7 +26,5 @@ public class MemberViewServlet extends HttpServlet {
 		//2. jsp 위임처리
 		request.getRequestDispatcher("/WEB-INF/views/member/memberView.jsp")
 			   .forward(request, response);
-		
 	}
-
 }

@@ -39,7 +39,5 @@ public class LoggerFilter implements Filter {
 		
 		//2. servlet/jsp 처리이후
 		System.out.println("______________________________________");
-
 	}
-
 }
