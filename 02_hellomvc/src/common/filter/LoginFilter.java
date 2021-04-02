@@ -20,9 +20,11 @@ import member.model.vo.Member;
 @WebFilter(urlPatterns = { 
 	"/member/memberView", 
 	"/member/memberUpdate", 
-	"/member/memberDelete" 
+	"/member/memberDelete", 
+	"/member/updatePassword" 
 })
 public class LoginFilter implements Filter {
+
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
@@ -43,4 +45,5 @@ public class LoginFilter implements Filter {
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
 	}
+
 }
