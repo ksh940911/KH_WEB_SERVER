@@ -69,7 +69,6 @@ div#search-gender{display: <%= "gender".equals(type) ? "inline-block" : "none" %
 			<tr>
 				<td colspan="10" style="text-align:center;"> 조회된 회원이 없습니다. </td>
 			</tr>
-		
 		<% 
 		   } 
 		   else {
@@ -122,7 +121,6 @@ $(searchType).change(function(){
 		.css("display", "inline-block");
 	
 });
-
 
 $(".member-role").on("change", function(){
 	var memberId = $(this).data("memberId");
