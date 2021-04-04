@@ -226,6 +226,44 @@ public class MemberDao {
 		}
 		return list;
 	}
+	
+	public List<Member> selectList(Connection conn, int start, int end) {
+		List<Member> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectPagedList");
+		try {
+			// 미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			// 쿼리문실행
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while (rset.next()) {
+				Member member = new Member();
+				member.setMemberId(rset.getString("MEMBER_ID"));
+				member.setPassword(rset.getString("PASSWORD"));
+				member.setMemberName(rset.getString("MEMBER_NAME"));
+				member.setMemberRole(rset.getString("MEMBER_ROLE"));
+				member.setGender(rset.getString("GENDER"));
+				member.setBirthday(rset.getDate("BIRTHDAY"));
+				member.setEmail(rset.getString("EMAIL"));
+				member.setPhone(rset.getString("PHONE"));
+				member.setAddress(rset.getString("ADDRESS"));
+				member.setHobby(rset.getString("HOBBY"));
+				member.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				list.add(member);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 	public int updateMemberRole(Connection conn, Member member) {
 		int result = 0;
@@ -298,5 +336,32 @@ public class MemberDao {
 		}
 		return list;
 	}
+
+	public int selectMemberCount(Connection conn) {
+		int totalContents = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectMemberCount");
+
+		try {
+			// 미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			// 쿼리문실행
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				totalContents = rset.getInt("cnt");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
+	}
+
+	
 
 }

@@ -73,6 +73,13 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+	
+	public List<Member> selectList(int start, int end) {
+		Connection conn = getConnection();
+		List<Member> list = memberDao.selectList(conn, start, end);
+		close(conn);
+		return list;
+	}
 
 	public int updateMemberRole(Member member) {
 		Connection conn = getConnection();
@@ -91,6 +98,15 @@ public class MemberService {
 		close(conn);
 		return list;
 	}
+
+	public int selectMemberCount() {
+		Connection conn = getConnection();
+		int totalContents = memberDao.selectMemberCount(conn);
+		close(conn);
+		return totalContents;
+	}
+
+	
 
 
 }

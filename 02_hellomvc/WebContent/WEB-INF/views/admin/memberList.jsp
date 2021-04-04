@@ -69,6 +69,7 @@ div#search-gender{display: <%= "gender".equals(type) ? "inline-block" : "none" %
 			<tr>
 				<td colspan="10" style="text-align:center;"> 조회된 회원이 없습니다. </td>
 			</tr>
+		
 		<% 
 		   } 
 		   else {
@@ -101,6 +102,10 @@ div#search-gender{display: <%= "gender".equals(type) ? "inline-block" : "none" %
 		%>
 		</tbody>
 	</table>
+	
+	<div id="pageBar">
+		<%= request.getAttribute("pageBar") %>
+	</div>
 </section>
 <form 
 	action="<%= request.getContextPath() %>/admin/memberRoleUpdate" 
@@ -122,6 +127,7 @@ $(searchType).change(function(){
 	
 });
 
+
 $(".member-role").on("change", function(){
 	var memberId = $(this).data("memberId");
 	var memberRole = $(this).val();
@@ -134,6 +140,10 @@ $(".member-role").on("change", function(){
  		$frm.find("[name=memberId]").val(memberId);
  		$frm.find("[name=memberRole]").val(memberRole);
  		$frm.submit();
+	}
+	else {
+		//기본 선택된 option태그로 다시 변경
+		$(this).children("[selected]").prop("selected", true);
 	}
 });
 

@@ -48,4 +48,86 @@ public class MvcUtils {
 		return encryptedPassword;
 	}
 
+	
+	/**
+	 *  1. cPage
+	 *  2. numPerPage
+	 * 	3. totalContents 총 컨텐츠수
+	 * 	4. url 이동할 주소  /mvc/admin/memberList?cPage=
+	 *  ----------------------------------------
+	 * 	5. totalPage 전체페이지수 - pageNo 넘침 방지
+	 * 	6. pageBarSize 페이지바에 표시할 페이지 개수 지정 : 5
+	 * 	7. pageStart ~ pageEnd pageNo의 범위
+	 * 	8. pageNo 페이지넘버를 출력할 증감변수
+	 * 
+	 * @param cPage
+	 * @param numPerPage
+	 * @param totalContents
+	 * @param url
+	 * @return
+	 */
+	public static String getPageBar(int cPage, int numPerPage, int totalContents, String url) {
+		StringBuilder pageBar = new StringBuilder();
+		
+		int totalPage = (int)Math.ceil((double)totalContents / numPerPage);
+		int pageBarSize = 5;
+		//cPage속성 추가전 키워드 작업
+		//cPage이외의 다른 사용자입력값이 있는 경우 대비
+		// /mvc/admin/memberFinder?type=id&kw=abc&cPage=
+		url = (url.indexOf("?") > -1) ? url + "&" : url + "?";
+		
+		/**
+		 * 1 2 3 4 5  		---> 1
+		 * 6 7 8 9 10 		---> 6
+		 * 11 12 13 14 15 	---> 11
+		 * ...
+		 * 공식
+		 */
+		int pageStart = (cPage - 1) / pageBarSize * pageBarSize + 1;
+		int pageEnd = pageStart + pageBarSize - 1;
+		
+		//증감변수는 pageStart부터 시작
+		int pageNo = pageStart;
+		
+		//1. 이전
+		if(pageNo == 1) {
+			
+		}
+		else {
+			pageBar.append("<a href='" + url + "cPage=" + (pageNo - 1) + "'/>prev</a>\n");
+		}
+		
+		//2. pageNo
+		while(pageNo <= pageEnd && pageNo <= totalPage) {
+			if(pageNo == cPage) {
+				pageBar.append("<span class='cPage'>" + pageNo + "</span>\n");
+			}
+			else {
+				pageBar.append("<a href='" + url + "cPage=" + pageNo + "'/>" + pageNo +"</a>\n");
+			}
+			pageNo++;
+		}
+		
+		//3. 다음
+		// 마지막페이지가 포함된 페이지바인 경우
+		if(pageNo > totalPage) {
+			
+		}
+		else {
+			pageBar.append("<a href='" + url + "cPage=" + (pageNo) + "'/>next</a>\n");
+		}
+		/*
+			<a href='/mvc/admin/memberList?cPage=5'/>prev</a>
+			
+			<a href='/mvc/admin/memberList?cPage=6'/>6</a>
+			<a href='/mvc/admin/memberList?cPage=7'/>7</a>
+			<a href='/mvc/admin/memberList?cPage=8'/>8</a>
+			<a href='/mvc/admin/memberList?cPage=9'/>9</a>
+			<span class='cPage'>10</span>
+			
+			<a href='/mvc/admin/memberList?cPage=11'/>next</a>
+		*/
+		return pageBar.toString();
+	}
+
 }
