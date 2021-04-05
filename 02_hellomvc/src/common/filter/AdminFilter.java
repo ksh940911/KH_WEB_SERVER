@@ -19,7 +19,7 @@ import member.model.vo.Member;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter("/admin/*")
+//@WebFilter("/admin/*")
 public class AdminFilter implements Filter {
 
 	/**
