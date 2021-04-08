@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import board.model.exception.BoardException;
+import board.model.vo.Attachment;
 import board.model.vo.Board;
 import static common.JDBCTemplate.*;
 
@@ -49,6 +51,19 @@ public class BoardDao {
 				board.setContent(rset.getString("content"));
 				board.setRegDate(rset.getDate("reg_date"));
 				board.setReadCount(rset.getInt("read_count"));
+				
+				System.out.println(rset.getInt("attach_no"));
+				//첨부파일이 있는 경우
+				if(rset.getInt("attach_no") != 0) {
+					Attachment attach = new Attachment();
+					attach.setNo(rset.getInt("attach_no"));
+					attach.setBoardNo(rset.getInt("no"));
+					attach.setOrginalFileName(rset.getString("original_filename"));
+					attach.setRenamedFileName(rset.getString("renamed_filename"));
+					attach.setStatus("Y".equals(rset.getString("status")) ? true : false);
+					board.setAttach(attach);
+				}
+				
 				list.add(board);
 			}
 		} catch (SQLException e) {
@@ -92,12 +107,52 @@ public class BoardDao {
 			pstmt.setString(3, board.getContent());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new BoardException("게시물 등록 오류", e);
 		} finally {
 			close(pstmt);
 		}
 		
 		return result;
+	}
+
+	public int selectLastBoardNo(Connection conn) {
+		int boardNo = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLastBoardNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				boardNo = rset.getInt("board_no");
+			}
+		} catch (SQLException e) {
+			throw new BoardException("게시물 등록 번호 조회 오류", e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return boardNo;
+	}
+
+	public int insertAttachment(Connection conn, Attachment attach) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, attach.getBoardNo());
+			pstmt.setString(2, attach.getOrginalFileName());
+			pstmt.setString(3, attach.getRenamedFileName());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new BoardException("게시물 첨부파일 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 }
 

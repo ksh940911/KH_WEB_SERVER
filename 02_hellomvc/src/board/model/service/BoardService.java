@@ -28,13 +28,41 @@ public class BoardService {
 		close(conn);
 		return totalContents;
 	}
-
+	
+	/**
+	 * 첨부파일 있는 경우, attach객체를 attachment테이블에 등록한다. 
+	 * - board등록, attachment등록은 하나의 트랜잭션으로 처리되어야한다.
+	 * - 하나의 Connection에 의해 처리되어야한다.
+	 * 
+	 * @param board
+	 * @return
+	 */
 	public int insertBoard(Board board) {
 		Connection conn = getConnection();
-		int result = boardDao.insertBoard(conn, board);
-		if(result > 0) commit(conn);
-		else rollback(conn);
-		close(conn);
+		int result = 0;
+		
+		try {
+			result = boardDao.insertBoard(conn, board);
+			
+			//생성된 board_no를 가져오기
+			int boardNo = boardDao.selectLastBoardNo(conn);
+			System.out.println("boardNo@service = " + boardNo);
+			
+			if(board.getAttach() != null) {
+				//참조할 boardNo세팅
+				board.getAttach().setBoardNo(boardNo);
+				result = boardDao.insertAttachment(conn, board.getAttach());
+			}
+			commit(conn);
+			
+		} catch(Exception e) {
+			rollback(conn);
+
+			e.printStackTrace();
+			result = 0;
+		} finally {			
+			close(conn);
+		}
 		return result;
 	}
 	

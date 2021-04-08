@@ -7,6 +7,7 @@ public class Attachment {
 	private String orginalFileName;
 	private String renamedFileName;
 	private boolean status; // staus Y | N 처리되므로, jdbc에서 형변환필요.
+	
 	public Attachment() {
 		super();
 		// TODO Auto-generated constructor stub

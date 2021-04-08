@@ -4,8 +4,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 
 <script>
-//이게 잘 작동할까?
-$(document.boardEnrollFrm).submit(boardValidate);
+$(function(){
+	$(document.boardEnrollFrm).submit(boardValidate);	
+});
 
 /**
 * boardEnrollFrm 유효성 검사
@@ -33,7 +34,8 @@ function boardValidate(){
 <form
 	name="boardEnrollFrm"
 	action="<%=request.getContextPath() %>/board/boardEnroll" 
-	method="post">
+	method="post"
+	enctype="multipart/form-data">
 	<table id="tbl-board-view">
 	<tr>
 		<th>제 목</th>

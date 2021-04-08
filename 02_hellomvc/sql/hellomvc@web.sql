@@ -198,11 +198,39 @@ insert into spring.board (no,title,writer,content,reg_date,read_count) values (s
 
 commit;
 
-select * from board;
+
+select * from board order by no desc;
+select * from attachment;
 select * from member;
 
 
+-- board를 조회(첨부파일 조회)
 
+
+select b.*,
+            a.no attach_no,
+            a.original_filename,
+            a.renamed_filename,
+            a.status
+from board b
+    left join attachment a
+        on b.no = a.board_no
+order by b.no desc;
+
+
+select * 
+from ( 
+        select row_number() over(order by b.no desc) rnum, 
+                    b.*,
+                    a.no attach_no,
+                    a.original_filename,
+                    a.renamed_filename,
+                    a.status
+        from board b
+            left join attachment a
+                on b.no = a.board_no 
+        ) b 
+where rnum between ? and ?
 
 
 
