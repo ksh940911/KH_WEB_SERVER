@@ -57,7 +57,7 @@ public class BoardService {
 			
 		} catch(Exception e) {
 			rollback(conn);
-
+			
 			e.printStackTrace();
 			result = 0;
 		} finally {			
@@ -65,5 +65,4 @@ public class BoardService {
 		}
 		return result;
 	}
-	
 }

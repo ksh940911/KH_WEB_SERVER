@@ -58,7 +58,7 @@ public class BoardDao {
 					Attachment attach = new Attachment();
 					attach.setNo(rset.getInt("attach_no"));
 					attach.setBoardNo(rset.getInt("no"));
-					attach.setOrginalFileName(rset.getString("original_filename"));
+					attach.setOriginalFileName(rset.getString("original_filename"));
 					attach.setRenamedFileName(rset.getString("renamed_filename"));
 					attach.setStatus("Y".equals(rset.getString("status")) ? true : false);
 					board.setAttach(attach);
@@ -128,7 +128,7 @@ public class BoardDao {
 				boardNo = rset.getInt("board_no");
 			}
 		} catch (SQLException e) {
-			throw new BoardException("게시물 등록 번호 조회 오류", e);
+			throw new BoardException("게시물 등록번호 조회 오류", e);
 		} finally {
 			close(rset);
 			close(pstmt);
@@ -143,7 +143,7 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, attach.getBoardNo());
-			pstmt.setString(2, attach.getOrginalFileName());
+			pstmt.setString(2, attach.getOriginalFileName());
 			pstmt.setString(3, attach.getRenamedFileName());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -152,7 +152,6 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
-		
 	}
 }
 

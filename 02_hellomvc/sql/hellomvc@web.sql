@@ -230,7 +230,7 @@ from (
             left join attachment a
                 on b.no = a.board_no 
         ) b 
-where rnum between ? and ?
+where rnum between 1 and 5;
 
 
 

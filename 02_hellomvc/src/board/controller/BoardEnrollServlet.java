@@ -91,23 +91,21 @@ public class BoardEnrollServlet extends HttpServlet {
 		//multipartRequest.getFile("upFile"):File != null
 		if(originalFileName != null) {
 			Attachment attach = new Attachment();
-			attach.setOrginalFileName(originalFileName);
+			attach.setOriginalFileName(originalFileName);
 			attach.setRenamedFileName(renamedFileName);
 			board.setAttach(attach);
 		}
 		
-		//2. 업무로직 : db에 insert
+		//3. 업무로직 : db에 insert
 		int result = boardService.insertBoard(board);
 		String msg = (result > 0) ? 
 						"게시글 등록 성공!" :
 							"게시글 등록 실패!";
 		
-		//3. DML요청 : 리다이렉트 & 사용자피드백
+		//4. DML요청 : 리다이렉트 & 사용자피드백
 		// /mvc/board/boardList
 		HttpSession session = request.getSession();
 		session.setAttribute("msg", msg);
 		response.sendRedirect(request.getContextPath() + "/board/boardList");
-		
 	}
-
 }

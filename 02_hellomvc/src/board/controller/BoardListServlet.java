@@ -58,7 +58,5 @@ public class BoardListServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp")
 			   .forward(request, response);
-		
 	}
-
 }
