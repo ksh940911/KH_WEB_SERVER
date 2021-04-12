@@ -158,7 +158,7 @@ public class BoardService {
 		close(conn);
 		return commentList;
 	}
-	
+
 	public int deleteBoardComment(int no) {
 		Connection conn = getConnection(); 
 		int result = 0;

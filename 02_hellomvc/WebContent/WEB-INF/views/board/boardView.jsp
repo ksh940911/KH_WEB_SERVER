@@ -153,7 +153,7 @@ function deleteBoard(){
 <form 
 	action="<%= request.getContextPath() %>/board/boardCommentDelete" 
 	name="boardCommentDelFrm">
-	<input type="hidden" name="no" /> <%-- 댓글 번호 --%>
+	<input type="hidden" name="no" />
 	<input type="hidden" name="boardNo" value="<%= board.getNo() %>"/> <%-- 삭제하고 돌아갈 boardView 조회용 번호 --%>
 </form>
 

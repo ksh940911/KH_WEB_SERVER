@@ -47,15 +47,15 @@ public class BoardDao {
 			pstmt.setInt(2, end);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Board board = new Board();
+				BoardExt board = new BoardExt();
 				board.setNo(rset.getInt("no"));
 				board.setTitle(rset.getString("title"));
 				board.setWriter(rset.getString("writer"));
 				board.setContent(rset.getString("content"));
 				board.setRegDate(rset.getDate("reg_date"));
 				board.setReadCount(rset.getInt("read_count"));
+				board.setCommentCnt(rset.getInt("comment_cnt"));
 				
-				System.out.println(rset.getInt("attach_no"));
 				//첨부파일이 있는 경우
 				if(rset.getInt("attach_no") != 0) {
 					Attachment attach = new Attachment();
@@ -326,7 +326,7 @@ public class BoardDao {
 		}
 		return commentList;
 	}
-	
+
 	public int deleteBoardComment(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		int result = 0;

@@ -274,19 +274,18 @@ comment on column board_comment.reg_date is '게시판댓글 작성일';
 
 create sequence seq_board_comment_no;
 
-
 --샘플 테스트
 --83번글
 select * from member;
 --댓글 추가
 insert into board_comment(no, comment_level, writer, content, board_no, comment_ref)
-values(seq_board_comment_no.nextval, 1, 'shadow', '잘 읽었습니다.', 83, null);
+values(seq_board_comment_no.nextval, 1, 'sejong', '잘 읽었습니다.', 83, null);
 
 insert into board_comment(no, comment_level, writer, content, board_no, comment_ref)
 values(seq_board_comment_no.nextval, 1, 'shqkel', '멋지네요~', 83, null);
 
 insert into board_comment(no, comment_level, writer, content, board_no, comment_ref)
-values(seq_board_comment_no.nextval, 1, 'nana', 'WOW ㅇㅅㅇ', 83, null);
+values(seq_board_comment_no.nextval, 1, 'sinsa', 'WOW ㅇㅅㅇ', 83, null);
 
 --대댓글 추가
 insert into board_comment(no, comment_level, writer, content, board_no, comment_ref)
@@ -330,4 +329,7 @@ where board_no = 83
 start with comment_level = 1
 connect by prior no = comment_ref
 order siblings by reg_date;
+
+
+
 
