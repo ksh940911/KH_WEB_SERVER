@@ -117,4 +117,5 @@ public class BoardEnrollServlet extends HttpServlet {
 			throw e; // was한테 다시 던져서 에러페이지로 전환함.
 		}
 	}
+
 }

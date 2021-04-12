@@ -39,6 +39,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		request.setAttribute("board", board);
 		request.getRequestDispatcher("/WEB-INF/views/board/boardUpdateForm.jsp")
 			   .forward(request, response);
+	
 	}
 
 	/**
@@ -86,6 +87,10 @@ public class BoardUpdateServlet extends HttpServlet {
 			String originalFileName = multipartRequest.getOriginalFileName("upFile");
 			String renamedFileName = multipartRequest.getFilesystemName("upFile");
 			
+			//삭제할 첨부파일번호
+			String attachNo = multipartRequest.getParameter("delFile");
+			System.out.println("attachNo@servlet = " + attachNo);
+			
 	//		Board board = new Board(0, title, writer, content, null, 0, null);
 			Board board = new Board();
 			board.setNo(no);
@@ -103,8 +108,14 @@ public class BoardUpdateServlet extends HttpServlet {
 				board.setAttach(attach);
 			}
 			
-			//2. 업무로직 : db에 insert
-			int result = boardService.updateBoard(board);
+			//2. 업무로직 : 
+			//첨부파일
+			int result = 0;
+			if(attachNo != null)
+				result = boardService.deleteAttachment(attachNo);
+			
+			//db에 update
+			result = boardService.updateBoard(board);
 			String msg = (result > 0) ? 
 							"게시글 수정 성공!" :
 								"게시글 수정 실패!";
@@ -122,4 +133,5 @@ public class BoardUpdateServlet extends HttpServlet {
 			throw e; // was한테 다시 던져서 에러페이지로 전환함.
 		}
 	}
+
 }

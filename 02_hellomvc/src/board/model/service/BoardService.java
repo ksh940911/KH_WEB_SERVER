@@ -11,6 +11,7 @@ import java.util.List;
 import board.model.dao.BoardDao;
 import board.model.vo.Attachment;
 import board.model.vo.Board;
+import board.model.vo.BoardComment;
 
 public class BoardService {
 
@@ -117,6 +118,52 @@ public class BoardService {
 			if(board.getAttach() != null)
 				result = boardDao.insertAttachment(conn, board.getAttach());
 
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
+	}
+
+	public int deleteAttachment(String attachNo) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = boardDao.deleteAttachment(conn, attachNo);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
+	}
+
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = boardDao.insertBoardComment(conn, bc);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		return result;
+	}
+
+	public List<BoardComment> selectBoardCommentList(int no) {
+		Connection conn = getConnection();
+		List<BoardComment> commentList = boardDao.selectBoardCommentList(conn, no);
+		close(conn);
+		return commentList;
+	}
+	
+	public int deleteBoardComment(int no) {
+		Connection conn = getConnection(); 
+		int result = 0;
+		try {
+			result = boardDao.deleteBoardComment(conn, no);
 			commit(conn);
 		} catch(Exception e) {
 			rollback(conn);

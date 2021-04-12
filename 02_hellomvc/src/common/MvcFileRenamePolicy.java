@@ -1,13 +1,15 @@
 package common;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 public class MvcFileRenamePolicy implements FileRenamePolicy {
-	
+
 	/**
 	 * 벚꽃.jpg -> 20210406090909_123.jpg 파일명 변경
 	 */
@@ -31,7 +33,9 @@ public class MvcFileRenamePolicy implements FileRenamePolicy {
 						   + ext;
 			//파일객체로 변환
 			newFile = new File(f.getParent(), newName);
+			
 		} while(!createNewFile(newFile));
+		
 		return newFile;
 	}
 
@@ -50,4 +54,5 @@ public class MvcFileRenamePolicy implements FileRenamePolicy {
 			return false;
 		}
 	}
+
 }

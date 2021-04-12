@@ -63,5 +63,7 @@ public class FileDownloadServlet extends HttpServlet {
 		//d. 자원반납
 		bos.close();
 		bis.close();
+		
 	}
+
 }

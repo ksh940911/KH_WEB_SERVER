@@ -1,4 +1,5 @@
-﻿<%@page import="board.model.vo.Board"%>
+﻿<%@page import="board.model.vo.BoardExt"%>
+<%@page import="board.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -25,12 +26,13 @@
 		</tr>
 	<% 
 	   if(list != null && !list.isEmpty()) { 
-		  for(Board b : list){
+		  for(Board board : list){
+			BoardExt b = (BoardExt) board; 
 	%>	
 		<tr>
 			<td><%= b.getNo() %></td>
 			<td>
-				<a href="<%= request.getContextPath() %>/board/boardView?no=<%= b.getNo() %>"><%= b.getTitle() %></a>
+				<a href="<%= request.getContextPath() %>/board/boardView?no=<%= b.getNo() %>"><%= b.getTitle() %><%= b.getCommentCnt() > 0 ? "(" + b.getCommentCnt() + ")" : "" %></a>
 			</td>
 			<td><%= b.getWriter() %></td>
 			<td><%= b.getRegDate() %></td>
