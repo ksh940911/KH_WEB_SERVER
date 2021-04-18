@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.BoardService;
+import board.model.service.ReviewService;
 import board.model.vo.Attachment;
 
 /**
@@ -21,7 +21,7 @@ import board.model.vo.Attachment;
 @WebServlet("/board/fileDownload")
 public class FileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BoardService boardService = new BoardService();
+	private ReviewService boardService = new ReviewService();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

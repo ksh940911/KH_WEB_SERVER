@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-import board.model.service.BoardService;
+import board.model.service.ReviewService;
 import board.model.vo.Attachment;
 import board.model.vo.Board;
 import common.MvcFileRenamePolicy;
@@ -23,7 +23,7 @@ import common.MvcFileRenamePolicy;
 @WebServlet("/board/boardUpdate")
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private BoardService boardService = new BoardService();
+	private ReviewService boardService = new ReviewService();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
