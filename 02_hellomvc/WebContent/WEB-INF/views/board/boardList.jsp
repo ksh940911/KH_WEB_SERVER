@@ -1,20 +1,24 @@
-﻿<%@page import="board.model.vo.BoardExt"%>
+<%@page import="board.model.vo.BoardExt"%>
 <%@page import="board.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
+<%
 	List<Board> list = (List<Board>) request.getAttribute("list");
 %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 	<h2>게시판 </h2>
-	<% 	if(loginMember != null){ %>
+	<%
+		if(loginMember != null){
+	%>
 	<input 
 		type="button" value="글쓰기" id="btn-add" 
-		onclick="location.href='<%= request.getContextPath() %>/board/boardForm';"/>
-	<% 	} %>
+		onclick="location.href='<%=request.getContextPath()%>/board/boardForm';"/>
+	<%
+		}
+	%>
 	<table id="tbl-board">
 		<tr>
 			<th>번호</th>
@@ -24,10 +28,10 @@
 			<th>첨부파일</th><%--첨부파일이 있는 경우 /images/file.png 표시 width:16px --%>
 			<th>조회수</th>
 		</tr>
-	<% 
-	   if(list != null && !list.isEmpty()) { 
+	<%
+		if(list != null && !list.isEmpty()) { 
 		  for(Board board : list){
-			BoardExt b = (BoardExt) board; 
+			BoardExt b = (BoardExt) board;
 	%>	
 		<tr>
 			<td><%= b.getNo() %></td>

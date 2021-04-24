@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.model.exception.BoardException;
-import board.model.service.ReviewService;
+import board.model.service.BoardService;
 import board.model.vo.Board;
 import board.model.vo.BoardComment;
 import common.MvcUtils;
@@ -21,7 +21,7 @@ import common.MvcUtils;
 @WebServlet("/board/boardView")
 public class BoardViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ReviewService boardService = new ReviewService();
+    private BoardService boardService = new BoardService();
 
 	/**
 	 * 게시글 상세보기

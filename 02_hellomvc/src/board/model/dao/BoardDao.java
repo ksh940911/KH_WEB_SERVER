@@ -32,7 +32,6 @@ public class BoardDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public List<Board> selectList(Connection conn, int start, int end) {
@@ -66,7 +65,6 @@ public class BoardDao {
 					attach.setStatus("Y".equals(rset.getString("status")) ? true : false);
 					board.setAttach(attach);
 				}
-				
 				list.add(board);
 			}
 		} catch (SQLException e) {
@@ -114,7 +112,6 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 
@@ -155,7 +152,6 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
-		
 	}
 	
 	public Board selectOne(Connection conn, int no) {
@@ -254,7 +250,6 @@ public class BoardDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 
@@ -342,7 +337,6 @@ public class BoardDao {
 		}
 		return result;
 	}
-
 }
 
 

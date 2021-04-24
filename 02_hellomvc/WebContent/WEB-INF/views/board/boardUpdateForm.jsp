@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>    
 <%
-	Board board = (Board) request.getAttribute("board");
-%>
+    	Board board = (Board) request.getAttribute("board");
+    %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">
 <h2>게시판 수정</h2>

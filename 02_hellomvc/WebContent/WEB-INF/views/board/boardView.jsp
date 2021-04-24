@@ -7,13 +7,13 @@
 <%
 	Board board = (Board)request.getAttribute("board");
 	boolean editable = 
-			loginMember != null && 
-			(
-			  loginMember.getMemberId().equals(board.getWriter())
-			  || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())
-			);
+	loginMember != null && 
+	(
+	  loginMember.getMemberId().equals(board.getWriter())
+	  || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())
+	);
 	
-	List<BoardComment> commentList = (List<BoardComment>) request.getAttribute("commentList"); 
+	List<BoardComment> commentList = (List<BoardComment>) request.getAttribute("commentList");
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board.css" />
 <section id="board-container">

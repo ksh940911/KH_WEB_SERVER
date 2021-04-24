@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.ReviewService;
+import board.model.service.BoardService;
 
 /**
  * Servlet implementation class BoardDeleteServlet
@@ -16,7 +16,7 @@ import board.model.service.ReviewService;
 @WebServlet("/board/boardDelete")
 public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ReviewService boardService = new ReviewService();
+    private BoardService boardService = new BoardService();
     
     /**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
