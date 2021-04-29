@@ -330,6 +330,6 @@ start with comment_level = 1
 connect by prior no = comment_ref
 order siblings by reg_date;
 
-
+select * from attachment where board_no = 81 and status = 'Y';
 
 
