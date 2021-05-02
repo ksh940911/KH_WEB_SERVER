@@ -101,27 +101,5 @@ th, td {
 		</tr>
 		</c:forEach>
 	</table>
-	
-	
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />	
 </body>
 </html>

@@ -38,11 +38,10 @@ public class CoreBasicsServlet extends HttpServlet {
 		map.put("num", 3.456);
 		map.put("now", System.currentTimeMillis());
 		request.setAttribute("map", map);
-		
+		 
 		request.getRequestDispatcher("/jstl/coreBasics.jsp")
 			   .forward(request, response);
 	}
-
 }	
 
 
