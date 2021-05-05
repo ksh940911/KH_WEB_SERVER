@@ -45,7 +45,6 @@ th, td {
 		${no1} eq ${no2}
 	</c:if>
 	
-	
 	<c:set var="rnd" value="<%= new Random().nextInt(100) %>"/>
 	<p>
 	<c:choose>
