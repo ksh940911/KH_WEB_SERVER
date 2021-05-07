@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.mybatis.common.AbstractController;
 import com.kh.mybatis.student.model.service.StudentService;
@@ -24,16 +25,24 @@ public class InsertStudentController extends AbstractController {
 	@Override
 	public String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//1. 사용자 입력값 처리
-		String name = request.getParameter("name");
-		String tel = request.getParameter("tel");
-		Student student = new Student();
-		student.setName(name);
-		student.setTel(tel);
+		try {
+			//1. 사용자 입력값 처리
+			String name = request.getParameter("name");
+			String tel = request.getParameter("tel");
+			Student student = new Student();
+			student.setName(name);
+			student.setTel(tel);
+			
+			//2. 업무로직
+			int result = studentService.insertStudent(student);
 		
-		//2. 업무로직
-		
-		//3. 사용자피드백 및 리다이렉트
+			//3. 사용자피드백 및 리다이렉트
+			request.getSession().setAttribute("msg", "학생 등록 성공!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e; 
+		}
 		
 		return "redirect:/student/insertStudent.do";
 	}

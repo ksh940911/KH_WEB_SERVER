@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,12 @@ table#tbl-student th{text-align:right;}
 table#tbl-student td{text-align:left;}
 table#tbl-student tr:last-of-type td{text-align:center;}
 </style>
+<script>
+<c:if test="${not empty msg}">
+alert("${msg}");
+</c:if>
+<c:remove var="msg" scope="session"/>
+</script>
 </head>
 <body>
 	<div class="enroll-container">
@@ -42,6 +49,5 @@ table#tbl-student tr:last-of-type td{text-align:center;}
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>
