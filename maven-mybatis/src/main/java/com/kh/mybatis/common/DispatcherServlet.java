@@ -55,6 +55,7 @@ public class DispatcherServlet extends HttpServlet {
 			String value = prop.getProperty(key); // 클래스명
 			//Controller객체화: new SomeController();
 			try {
+				//java reflection api
 				//클래스객체 : 해당클래스의 구성정보(필드, 메소드, 접근제한자)
 				Class clazz = Class.forName(value);
 				AbstractController controller 

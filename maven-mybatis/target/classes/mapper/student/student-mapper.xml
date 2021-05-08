@@ -13,4 +13,97 @@
 			#{tel}
 		)
 	</insert>
+	<insert id="insertStudentMap">
+		insert into
+			student(no, name, tel)
+		values(
+			seq_student_no.nextval,
+			#{name},
+			#{tel}
+		)
+	</insert>
+	<!-- select태그의 resultType/resultMap은 필수속성이다. 둘중하나 반드시 작성 -->
+	<select id="selectStudentCount" resultType="_int">
+		select
+			count(*)
+		from
+			student
+	</select>
+	<!-- 
+		resultset을 mybatis가 자동으로  vo 매핑
+		1. 동일한 이름의 setter를 통해 값대입
+		2. 자동형변환 처리 
+			varchar2, char -> String
+			number -> int/double
+			date -> java.util.date 
+			
+		필드명 불일치시
+		1. query alias지정 - 대소문자 구분위해 "" 필수 
+			select reg_date "regDate"...
+		2. resultMap - db컬럼과 vo필드(property)를 연결
+		3. mybatis-config.xml의 setting태그 mapUnderscoreToCamelCase true 설정
+		
+	-->
+	<select id="selectOneStudent" resultType="student">
+		select
+			*
+		from 
+			student
+		where
+			no = #{no}
+	</select>
+	<!-- <select id="selectOneStudent" resultMap="studentVoMap">
+		select
+			*
+		from 
+			student
+		where
+			no = #{no}
+	</select> -->
+	<!-- 
+		db컬럼과 vo필드(property)를 연결.
+		1. 이름 불일치 해결
+		2. 형변환처리를 임의로 지정
+		
+		- column과 property가 동일하다면, 해당 자식 태그는 생략가능
+		- resultMap은 재사용이 가능하다.
+	 -->
+	<resultMap type="student" id="studentVoMap">
+		<!-- pk컬럼용 -->
+		<id column="no" property="no"/>
+		<!-- 나머지 컬럼용 -->
+		<result column="name" property="name"/>
+		<result column="tel" property="tel"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	<!-- <select id="selectOneStudentMap" resultType="hashmap">
+		select
+			no "no",
+			name "name",
+			tel "tel",
+			reg_date "regDate"
+		from
+			student
+		where 
+			no = #{no}
+	</select> -->
+	<select id="selectOneStudentMap" resultMap="studentMap">
+		select
+			*
+		from
+			student
+		where 
+			no = #{no}
+	</select>
+	<resultMap type="map" id="studentMap">
+		<id column="no" property="no"/>
+		<result column="name" property="name"/>
+		<result column="tel" property="tel"/>
+		<result column="reg_date" property="regDate"/>
+	</resultMap>
+	
+	
 </mapper>
+
+
