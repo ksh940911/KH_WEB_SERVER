@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <settings>
-  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+  	<setting name="mapUnderscoreToCamelCase" value="true"/><!-- _들어간 변수명을 카멜케이싱으로 바꿔주는 옵션 -->
   </settings>
   <typeAliases>
   	<typeAlias type="com.kh.mybatis.student.model.vo.Student" alias="student"/>
@@ -22,5 +22,6 @@
   </environments>
   <mappers>
     <mapper resource="mapper/student/student-mapper.xml"/>
+    <mapper resource="mapper/emp/emp-mapper.xml"/>
   </mappers>
 </configuration>

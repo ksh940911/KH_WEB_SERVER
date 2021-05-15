@@ -29,7 +29,6 @@
 		from
 			student
 	</select>
-	
 	<!-- 
 		resultset을 mybatis가 자동으로  vo 매핑
 		1. 동일한 이름의 setter를 통해 값대입
@@ -43,6 +42,7 @@
 			select reg_date "regDate"...
 		2. resultMap - db컬럼과 vo필드(property)를 연결
 		3. mybatis-config.xml의 setting태그 mapUnderscoreToCamelCase true 설정
+		
 	-->
 	<select id="selectOneStudent" resultType="student">
 		select
@@ -52,15 +52,6 @@
 		where
 			no = #{no}
 	</select>
-	
-	<!-- 
-		db컬럼과 vo필드(property)를 연결.
-		1. 이름 불일치 해결
-		2. 형변환처리를 임의로 지정
-		
-		- column과 property가 동일하다면, 해당 자식 태그는 생략가능
-		- resultMap은 재사용이 가능하다.
-	 -->
 	<!-- <select id="selectOneStudent" resultMap="studentVoMap">
 		select
 			*
@@ -69,6 +60,14 @@
 		where
 			no = #{no}
 	</select> -->
+	<!-- 
+		db컬럼과 vo필드(property)를 연결.
+		1. 이름 불일치 해결
+		2. 형변환처리를 임의로 지정
+		
+		- column과 property가 동일하다면, 해당 자식 태그는 생략가능
+		- resultMap은 재사용이 가능하다.
+	 -->
 	<resultMap type="student" id="studentVoMap">
 		<!-- pk컬럼용 -->
 		<id column="no" property="no"/>
@@ -103,6 +102,40 @@
 		<result column="tel" property="tel"/>
 		<result column="reg_date" property="regDate"/>
 	</resultMap>
+	
+	<update id="updateStudent">
+		update
+			student
+		set
+			name = #{name},
+			tel = #{tel}
+		where 
+			no = #{no}
+	</update>
+	<delete id="deleteStudent">
+		delete from
+			student
+		where 
+			no = #{no}
+	</delete>
+	
+	<select id="selectStudentList" resultType="student">
+		select 
+			*
+		from 
+			student
+		order by
+			no desc
+	</select>
+	
+	<select id="selectStudentMapList" resultMap="studentMap">
+		select 
+			*
+		from 
+			student
+		order by
+			no desc
+	</select>
 </mapper>
 
 
