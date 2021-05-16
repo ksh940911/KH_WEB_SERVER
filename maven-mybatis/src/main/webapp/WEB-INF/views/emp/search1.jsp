@@ -75,8 +75,8 @@ div#search-container{
 		<%-- 조회된 데이터가 있는 경우 --%>
 		<c:forEach items="${list}" var="emp" varStatus="vs">
 		<tr>
-			<td>${vs.count}</td>
-			<td>${emp['EMP_ID']}</td>
+			<td>${vs.count}</td><!-- 0부터 시작할거면 count대신 index -->
+			<td>${emp.EMP_ID}</td>
 			<td>${emp['EMP_NAME']}</td>
 			<td>${fn:substring(emp['EMP_NO'], 0, 8)}******</td>
 			<td>${emp['EMAIL']}</td>

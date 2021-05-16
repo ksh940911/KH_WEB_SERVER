@@ -44,11 +44,6 @@ $(() => {
 		<li><a href="${pageContext.request.contextPath}/emp/search1.do">/emp/search1.do</a></li>
 		<li><a href="${pageContext.request.contextPath}/emp/search2.do">/emp/search2.do</a></li>
 	</ul>
-	
-	
-	
-	
-	
 
 </body>
 </html>

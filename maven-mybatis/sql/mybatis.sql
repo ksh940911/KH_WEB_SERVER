@@ -38,7 +38,7 @@ create synonym emp for kh.employee;
 create synonym dept for kh.department;
 create synonym job for kh.job;
 
-    select * from emp;
+select * from emp;
 select * from dept;
 select * from job;
 
